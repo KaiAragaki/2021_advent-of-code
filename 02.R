@@ -1,7 +1,9 @@
-df <- read.delim("data/02.txt", header = F, sep = " ", col.names = c("name", "v"))
 library(dplyr)
 library(tidyr)
 library(purrr)
+
+df <- read.delim("data/02.txt", header = F, sep = " ", col.names = c("name", "v"))
+
 df |> 
   group_by(name) |> 
   summarise(value = sum(v)) |> 
@@ -17,6 +19,5 @@ df2 <- df |>
            accumulate(sum),
          fwd = ifelse(name == "forward", v, 0),
          depth = fwd*aim)
-sum(df2$fwd)*sum(df2$depth)
 
-         
+sum(df2$fwd)*sum(df2$depth)
